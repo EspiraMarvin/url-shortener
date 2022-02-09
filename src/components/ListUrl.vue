@@ -17,7 +17,7 @@
                 {{ url.longUrl }}
               </div>
               <q-tooltip>
-                {{ url.date }}
+                {{ moment(url.date).format('DD/mm hh:mm A') }}
               </q-tooltip>
             </q-item-section>
 
@@ -42,10 +42,11 @@
 import { copyToClipboard } from 'quasar'
 import { openURL } from 'quasar'
 import utils from 'src/helpers/utils'
+import moment from 'moment'
 export default {
   name: "ListUrl",
   data() {
-    return {...utils}
+    return {...utils, moment:moment}
   },
   mounted() {
     this.$store.dispatch('urls/FETCH_URLS')
