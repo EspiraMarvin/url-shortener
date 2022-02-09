@@ -1,0 +1,4 @@
+{
+  "mongoURI": "mongodb+srv://marvin:Itstbag254@cluster0.fkvqn.mongodb.net/myF,irstDatabase?retryWrites=true&w=majority",
+  "baseUrl": "http://localhost:5000"
+}
