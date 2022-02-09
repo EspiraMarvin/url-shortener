@@ -1,15 +1,18 @@
 <template>
-  <q-page class="flex flex-center">
-    <img
-      alt="Quasar logo"
-      src="~assets/quasar-logo-vertical.svg"
-      style="width: 200px; height: 200px"
-    >
+  <q-page class="flex justify-center">
+    <div>
+      <div class="text-h5 text-capitalize q-mt-xl">url shortener</div>
+      <Addurl />
+      <ListUrl />
+    </div>
   </q-page>
 </template>
 
 <script>
+import Addurl from "components/Addurl";
+import ListUrl from "components/ListUrl";
 export default {
-  name: 'PageIndex'
+  name: 'PageIndex',
+  components: { Addurl, ListUrl }
 }
 </script>
