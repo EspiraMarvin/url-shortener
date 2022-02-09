@@ -41,7 +41,7 @@ router.post('/shorten', async (req, res) => {
     }
   }else {
     // long url is not valid
-    res.status(401).json('Can Not Shorten Invalid URL')
+    res.status(401).json('Can Not Shorten An Invalid URL')
 
   }
 })
