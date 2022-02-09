@@ -9,7 +9,7 @@ const { baseUrl } = require('../config')
 // @desc   Create short url
 
 router.post('/shorten', async (req, res) => {
-  const { longUrl } = req.body
+  const longUrl = req.body.url
 
   // check base url
   if (!validUrl.is_uri(baseUrl)) {
@@ -37,16 +37,31 @@ router.post('/shorten', async (req, res) => {
       }
     }
     catch (e) {
-      console.log('error', e)
       res.status(500).json('Server Error')
     }
   }else {
     // long url is not valid
-    res.status(401).json('Invalid URL')
+    res.status(401).json('Can Not Shorten Invalid URL')
 
   }
-
 })
+
+// @ route GET /api/urls
+// @desc   list of all urls (long and short urls)
+
+router.get('/', async (req, res) => {
+  try {
+    const urls = await Url.find()
+    if (!urls) throw new Error('No Urls')
+    const sorted = urls.sort((a, b) => {
+      return new Date(b.date).getTime() - new Date(a.date).getTime()
+    })
+    res.status(200).json(sorted)
+  } catch (error) {
+    res.status(404).json({success: true, message: error.message})
+  }
+})
+
 
 
 module.exports = router

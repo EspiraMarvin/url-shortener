@@ -1,10 +1,5 @@
 <template>
-<!--  <q-layout view="lHh Lpr lFf">-->
   <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
-
-    </q-header>
-
     <q-page-container>
       <router-view />
     </q-page-container>
@@ -12,7 +7,6 @@
 </template>
 
 <script>
-
 
 export default {
   name: 'MainLayout',

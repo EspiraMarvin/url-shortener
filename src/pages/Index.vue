@@ -1,7 +1,7 @@
 <template>
-  <q-page class="flex justify-center">
+  <q-page class="q-px-lg">
     <div>
-      <div class="text-h5 text-capitalize q-mt-xl">url shortener</div>
+      <div class="text-h5 text-capitalize q-pt-lg text-center">url shortener</div>
       <Addurl />
       <ListUrl />
     </div>

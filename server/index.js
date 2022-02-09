@@ -1,10 +1,12 @@
 const express = require('express')
 const { PORT } = require('./config')
+const cors  =require('cors')
 const connectDB = require('./config/db')
 const app = express()
-
+app.use(cors())
 // connect to db
 connectDB()
+
 
 app.use(express.json({ extended: false })) // allows us to accept json into our api
 
