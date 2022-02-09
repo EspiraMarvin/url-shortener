@@ -1,6 +1,5 @@
 import axios from "axios";
 
-// const clientAPI = 'http://localhost:5000/api/url/shorten'
 const clientAPI = 'http://localhost:5000'
 
 const state = () => ({

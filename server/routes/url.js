@@ -3,7 +3,7 @@ const Url = require('../models/Url')
 const router = Router()
 const validUrl = require('valid-url')
 const shortId = require('shortid')
-const { baseUrl } = require('../config')
+const { baseUrl } = require('../config/config')
 
 // @ route POST /api/url/shorten
 // @desc   Create short url

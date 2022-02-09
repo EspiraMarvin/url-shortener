@@ -1,6 +1,5 @@
 const mongoose = require('mongoose')
-const config = require('config')
-const { PORT, mongoUri } = require('../config')
+const { PORT, mongoUri } = require('./config')
 
 const connectDB = async () => {
   try {

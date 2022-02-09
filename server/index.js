@@ -1,5 +1,5 @@
 const express = require('express')
-const { PORT } = require('./config')
+const { PORT } = require('./config/config')
 const cors  =require('cors')
 const connectDB = require('./config/db')
 const app = express()
