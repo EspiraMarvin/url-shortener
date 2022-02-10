@@ -1,6 +1,5 @@
-# url-shortener (Quasar(Vuejs 3) & Express API)
+# url-shortener (Quasar(Vuejs 2) & Express API)
 
-A Quasar Framework app
 
 ## Prerequisites
 Before we set up the app, let’s check whether Quasar CLI is globally installed on your computer. Using the terminal run:
@@ -87,3 +86,9 @@ yarn dev
 ```
 
 ### Server opens up the URL [localhost:5000](http://localhost:5000)
+
+
+### FOR VUE3 Code visit vue3 branch, link is below.
+
+
+### [Vuejs 3 Code Implementation](https://github.com/EspiraMarvin/url-shortener/tree/vue3)

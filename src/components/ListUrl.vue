@@ -7,13 +7,10 @@
       </template>
 
       <template v-if="!loadingUrls && urlsList.length === 0">
-        <div>
           <div class="flex flex-center q-mt-xl text-grey-6 text-h6">No Urls Shortened</div>
-          </div>
       </template>
 
       <template v-if="!loadingUrls && urlsList.length > 0">
-        <div>
         <q-list bordered separator class="full-width" style="max-width: 1200px" v-for="url in urlsList" :key="url._id">
           <q-item class="row">
             <q-item-section class="xs-hide sm-hide">
@@ -37,14 +34,13 @@
             </q-item-section>
           </q-item>
         </q-list>
-          </div>
       </template>
     </div>
   </div>
 </template>
 
 <script setup>
-import {ref, computed, defineProps, onMounted, watch} from "vue";
+import {ref, computed, onMounted, watch} from "vue";
 import moment from 'moment'
 import axios from 'axios'
 import { copyToClipboard, openURL, QSpinnerFacebook, useQuasar } from 'quasar'
@@ -56,7 +52,7 @@ const baseAPI = 'http://localhost:5000'
       }
     })
 
-    const $q = useQuasar()
+    let $q = useQuasar()
     let momentTime = ref(moment)
     let loadingUrls = ref(false)
 
