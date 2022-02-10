@@ -1,18 +1,37 @@
 <template>
   <q-page class="q-px-lg">
-    <div>
       <div class="text-h5 text-capitalize q-pt-lg text-center">url shortener</div>
-      <Addurl />
-      <ListUrl />
-    </div>
+      <AddUrl @toParent="toParent" />
+      <ListUrl :updateUrls="updateUrls" @resetProp="resetProp" />
   </q-page>
 </template>
 
 <script>
-import Addurl from "components/Addurl";
+import {ref, defineComponent, defineProps } from "vue";
+import AddUrl from "components/AddUrl";
 import ListUrl from "components/ListUrl";
-export default {
-  name: 'PageIndex',
-  components: { Addurl, ListUrl }
-}
+
+export default defineComponent({
+  name: "PageIndex",
+  components: { AddUrl, ListUrl },
+  setup() {
+    let updateUrls = ref(false)
+
+    const toParent = (val) => {
+      if (val === 'updateUrls') {
+        updateUrls.value = true
+      }
+    }
+
+    const resetProp = (val) => {
+      updateUrls.value = false
+    }
+
+    return {
+      toParent,
+      resetProp,
+      updateUrls
+    }
+  }
+});
 </script>

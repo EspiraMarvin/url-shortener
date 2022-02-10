@@ -2,14 +2,18 @@
   <div class="q-pt-md">
     <div class="text-center q-pt-md" style="text-decoration: underline">List of URLS</div>
     <div class="q-pt-xs flex justify-center">
-      <template v-if="fetchingUrls" class="q-mt-xl"><q-spinner-facebook color="primary" class="q-mt-xl" size="xl"/>
+      <template v-if="loadingUrls" class="q-mt-xl">
+        <QSpinnerFacebook size="xl" color="primary" class="q-mt-xl" />
       </template>
 
-      <template v-if="!fetchingUrls && urlsList.length === 0">
-        <div class="flex flex-center q-mt-xl text-grey-6 text-h6">No Urls Shortened</div>
+      <template v-if="!loadingUrls && urlsList.length === 0">
+        <div>
+          <div class="flex flex-center q-mt-xl text-grey-6 text-h6">No Urls Shortened</div>
+          </div>
       </template>
 
-      <template v-if="!fetchingUrls && urlsList.length > 0">
+      <template v-if="!loadingUrls && urlsList.length > 0">
+        <div>
         <q-list bordered separator class="full-width" style="max-width: 1200px" v-for="url in urlsList" :key="url._id">
           <q-item class="row">
             <q-item-section class="xs-hide sm-hide">
@@ -17,7 +21,7 @@
                 {{ url.longUrl }}
               </div>
               <q-tooltip>
-                {{ moment(url.date).format('DD/mm hh:mm A') }}
+                {{ momentTime(url.date).format('DD/mm hh:mm A') }}
               </q-tooltip>
             </q-item-section>
 
@@ -33,46 +37,74 @@
             </q-item-section>
           </q-item>
         </q-list>
+          </div>
       </template>
     </div>
   </div>
 </template>
 
-<script>
-import { copyToClipboard, openURL, QSpinnerFacebook } from 'quasar'
-import utils from 'src/helpers/utils'
+<script setup>
+import {ref, computed, defineProps, onMounted, watch} from "vue";
 import moment from 'moment'
-export default {
-  name: "ListUrl",
-  data() {
-    return {...utils, moment:moment}
-  },
-  mounted() {
-    this.$store.dispatch('urls/FETCH_URLS')
-  },
-  methods: {
-    copy(text){
+import axios from 'axios'
+import { copyToClipboard, openURL, QSpinnerFacebook, useQuasar } from 'quasar'
+const baseAPI = 'http://localhost:5000'
+    const props = defineProps({
+      updateUrls: {
+        type: Boolean,
+        required: true
+      }
+    })
+
+    const $q = useQuasar()
+    let momentTime = ref(moment)
+    let loadingUrls = ref(false)
+
+    const urlsList = ref([])
+
+    onMounted(() => {
+      fetchUrls()
+    })
+
+    let final = computed(() => {
+      return props.updateUrls
+    })
+
+    watch(final, (final) => {
+      if (final === true) {
+        fetchUrls()
+      }
+    })
+
+    const emit = defineEmits(['resetProp', 'resetProp'])
+
+    const fetchUrls = () => {
+      loadingUrls.value = true
+      axios.get(`${baseAPI}/api/url`)
+        .then(response => {
+          loadingUrls.value = false
+          urlsList.value = response.data
+          final = false
+          emit('resetProp', 'resetProp')
+        })
+        .catch(error => {
+          loadingUrls.value = false
+      })
+    }
+
+    const copy = (text) => {
       copyToClipboard(text)
         .then(() => {
-          this.$q.notify({
+          $q.notify({
             message: 'Link Copied', position: 'center', color: 'primary', icon: 'check_circle',
             actions: [{ label: `Open`, color: 'white', handler: () => {openURL(text)}}]
-            })
+          })
         })
         .catch((err) => {
-          this.$q.notify({ message: err, position: 'center', color: 'red-5'})
+          $q.notify({ message: err, position: 'center', color: 'red-5'})
         })
     }
-  },
-  computed: {
-    urlsList() {
-      return this.$store.getters['urls/GET_URLS']
-    },
-    fetchingUrls() {
-      return this.$store.getters['urls/GET_FETCHING_URLS']
-    }
-  }
-}
+
 </script>
 
 <style scoped>

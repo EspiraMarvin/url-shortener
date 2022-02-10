@@ -1,14 +1,15 @@
 {
-  "name": "url-shorterner",
+  "name": "url-short",
   "version": "0.0.1",
-  "description": "url shorterner",
-  "productName": "url-shorterner",
-  "author": "espiramarvin@gmail.com",
+  "description": "A Quasar Framework app",
+  "productName": "Quasar App",
+  "author": "marvin espira <marvinespira@adalabsafrica.com>",
   "private": true,
   "scripts": {
     "dev": "quasar dev",
-    "server": "nodemon server/server.js",
+    "build": "quasar build",
     "lint": "eslint --ext .js,.vue ./",
+    "format": "prettier --write \"**/*.{js,vue,scss,html,md,json}\" --ignore-path .gitignore",
     "test": "echo \"No test specified\" && exit 0"
   },
   "dependencies": {
@@ -16,15 +17,19 @@
     "axios": "^0.25.0",
     "core-js": "^3.6.5",
     "moment": "^2.29.1",
-    "quasar": "^1.0.0"
+    "quasar": "^2.0.0",
+    "vue": "^3.2.0",
+    "vue-router": "^4.0.0"
   },
   "devDependencies": {
-    "@quasar/app": "^2.0.0",
-    "babel-eslint": "^10.0.1",
-    "eslint": "^7.21.0",
+    "@babel/eslint-parser": "^7.13.14",
+    "@quasar/app": "^3.0.0",
+    "eslint": "^7.14.0",
     "eslint-config-prettier": "^8.1.0",
-    "eslint-plugin-vue": "^7.7.0",
-    "eslint-webpack-plugin": "^2.4.0"
+    "eslint-plugin-vue": "^7.0.0",
+    "eslint-webpack-plugin": "^2.4.0",
+    "prettier": "^2.5.1",
+    "vuex": "^4.0.2"
   },
   "browserslist": [
     "last 10 Chrome versions",
@@ -38,7 +43,7 @@
     "last 5 Opera versions"
   ],
   "engines": {
-    "node": ">= 10.18.1",
+    "node": ">= 12.22.1",
     "npm": ">= 6.13.4",
     "yarn": ">= 1.21.1"
   }

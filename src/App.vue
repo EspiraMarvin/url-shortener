@@ -1,10 +1,15 @@
 <template>
-  <div id="q-app">
-    <router-view />
-  </div>
+  <router-view />
 </template>
 <script>
-export default {
-  name: 'App'
-}
+import {defineComponent, inject} from "vue";
+export default defineComponent({
+  name: "App",
+  setup() {
+    const store = inject('store')
+    return {
+      store
+    }
+  }
+});
 </script>
