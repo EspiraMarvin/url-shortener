@@ -91,4 +91,4 @@ yarn dev
 ### FOR VUE3 Code visit vue3 branch, link is below.
 
 
-### Server opens up the URL [Vuejs 3 Code Implementation](https://github.com/EspiraMarvin/url-shortener/tree/vue3)
+### [Vuejs 3 Code Implementation](https://github.com/EspiraMarvin/url-shortener/tree/vue3)
