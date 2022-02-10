@@ -2,10 +2,7 @@
   <div class="q-pt-md">
     <div class="text-center q-pt-md" style="text-decoration: underline">List of URLS</div>
     <div class="q-pt-xs flex justify-center">
-      <template v-if="fetchingUrls" class="q-mt-xl">
-        <q-list  class="full-width" style="max-width: 1200px"  square v-for="(n, index) in 5" :key="index">
-          <q-skeleton  square class="full-width q-mt-xs" style="max-width: 1200px" height="40px"/>
-        </q-list>
+      <template v-if="fetchingUrls" class="q-mt-xl"><q-spinner-facebook color="primary" class="q-mt-xl" size="xl"/>
       </template>
 
       <template v-if="!fetchingUrls && urlsList.length === 0">
@@ -28,7 +25,7 @@
               <a :href="url.shortUrl" class="text-blue"  target="_blank" style="text-decoration: none">{{ url.shortUrl }}</a>
             </q-item-section>
             <q-space class="md-hide lg-hide xl-hide" />
-            <q-item-section side :style="$q.screen.lt.md ? 'margin-left:202px' :''" class="q-ml-xl">
+            <q-item-section side :style="$q.screen.lt.md ? 'margin-left:202px' :''" class="q-ml-xl cursor-pointer">
               <q-icon name="content_copy" color="primary" @click="copy(url.shortUrl)" />
               <q-tooltip>
                 Copy
@@ -42,8 +39,7 @@
 </template>
 
 <script>
-import { copyToClipboard } from 'quasar'
-import { openURL } from 'quasar'
+import { copyToClipboard, openURL, QSpinnerFacebook } from 'quasar'
 import utils from 'src/helpers/utils'
 import moment from 'moment'
 export default {
