@@ -1,4 +1,4 @@
-# url-shortener (Quasar(Vuejs) & Express API)
+# url-shortener (Quasar(Vuejs 2) & Express API)
 
 
 ## Prerequisites
