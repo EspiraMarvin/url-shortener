@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const clientAPI = 'http://localhost:5000'
+const baseURL = 'http://localhost:5000'
 
 const state = () => ({
   urls: [],
@@ -27,7 +27,7 @@ const actions = {
       longUrl: payload.url
     }
     return new Promise((resolve, reject) => {
-      axios.post(`${clientAPI}/api/url/shorten`, payload)
+      axios.post(`${baseURL}/api/url/shorten`, payload)
         .then(response => {
           context.dispatch('FETCH_URLS')
           resolve(response)
@@ -40,7 +40,7 @@ const actions = {
   FETCH_URLS(context, payload) {
     context.commit('SET_FETCHING_URLS', true)
     return new Promise((resolve, reject) => {
-      axios.get(`${clientAPI}/api/url`)
+      axios.get(`${baseURL}/api/url`)
         .then(response => {
           context.commit('SET_FETCHING_URLS', false)
           context.commit('SET_URLS', response.data)

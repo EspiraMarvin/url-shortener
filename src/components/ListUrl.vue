@@ -2,7 +2,6 @@
   <div class="q-pt-md">
     <div class="text-center q-pt-md" style="text-decoration: underline">List of URLS</div>
     <div class="q-pt-xs flex justify-center">
-
       <template v-if="fetchingUrls" class="q-mt-xl">
         <q-list  class="full-width" style="max-width: 1200px"  square v-for="(n, index) in 5" :key="index">
           <q-skeleton  square class="full-width q-mt-xs" style="max-width: 1200px" height="40px"/>
