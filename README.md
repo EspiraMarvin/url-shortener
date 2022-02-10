@@ -1,4 +1,4 @@
-# Quasar App (url-short)
+# url-shortener (Quasar(Vuejs 3) & Express API)
 
 A Quasar Framework app
 
