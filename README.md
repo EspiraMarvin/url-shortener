@@ -88,3 +88,7 @@ yarn dev
 ### Server opens up the URL [localhost:5000](http://localhost:5000)
 
 
+### FOR VUE3 Code visit vue3 branch, link is below.
+
+
+### Server opens up the URL [Vuejs 3 Code Implementation](https://github.com/EspiraMarvin/url-shortener/tree/vue3)
