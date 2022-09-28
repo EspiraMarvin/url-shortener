@@ -8,6 +8,7 @@
   "scripts": {
     "dev": "quasar dev",
     "server": "nodemon server/server.js",
+    "build": "quasar build",
     "lint": "eslint --ext .js,.vue ./",
     "test": "echo \"No test specified\" && exit 0"
   },
