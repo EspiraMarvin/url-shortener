@@ -2,10 +2,10 @@
   <div class="q-pt-md">
     <div class="text-center q-pt-md " style="text-decoration: underline;font-weight: bold; font-size:20px">Shortened URL List </div>
     <div class="q-pt-xl flex justify-center">
-      <template v-if="fetchingUrls && urlsList.length === 0 || fetchingUrls && urlsList.slice(0, urlsList.length-2).length === 0" class="q-mt-xl"><q-spinner-facebook color="primary" class="q-mt-xl" size="xl"/>
+      <template v-if="fetchingUrls &&  urlsList.length === 0" class="q-mt-xl"><q-spinner-facebook color="primary" class="q-mt-xl" size="xl"/>
       </template>
 
-      <template v-if="!fetchingUrls && urlsList.slice(0, urlsList.length-2).length === 0">
+      <template v-if="!fetchingUrls && urlsList.slice(0, urlsList.length-2).length === 0 && urlsList.length === 0">
         <div class="flex flex-center q-mt-xl text-grey-6 text-h6" style="font-weight: lighter;">No Urls Shortened</div>
       </template>
 
