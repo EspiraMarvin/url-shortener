@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = process.env.NODE_ENV !== 'production' ? 'http://localhost:5000' : 'https://shorts-api.onrender.com'
+const baseURL = process.env.NODE_ENV !== 'production' ? 'http://localhost:5000' : 'https://s-uyvf.onrender.com'
 
 
 const state = () => ({

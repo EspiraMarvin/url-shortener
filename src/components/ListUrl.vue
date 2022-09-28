@@ -65,7 +65,7 @@
           </q-item>
         </q-list>
       </div>
-      <footer style="position: absolute; bottom: 0" class="q-my-md">Created by Marvin Espira</footer>
+      <footer style="position: absolute; bottom: 0" class="q-my-md">Created by <a href="https://www.linkedin.com/in/marvin-espira/" target="_blank">Marvin Espira</a></footer>
 
       </template>
     </div>

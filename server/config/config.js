@@ -4,6 +4,6 @@ const env = require('dotenv/config')
 module.exports = {
   mongoUri: process.env.MONGO_URI,
   PORT: process.env.PORT || 5000,
-  baseUrl: process.env.NODE_ENV !== 'production' ? 'http://localhost:5000' : 'https://shorts-api.onrender.com'
+  baseUrl: process.env.NODE_ENV !== 'production' ? 'http://localhost:5000' : 'https://s-uyvf.onrender.com'
 }
 // https://technotez-api.onrender.com/
