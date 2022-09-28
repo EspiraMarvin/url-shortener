@@ -42,7 +42,7 @@
         <div class="q-mt-md full-width q-mb-xl"  style="max-width: 1200px; position:absolute; bottom: 0" >
         <div class="flex q-mt-md flex-center" style="text-decoration: underline">Sample</div>
         <q-list bordered separator class="q-mb-xs" style="max-width: 1200px" v-for="url in urlsList.slice(urlsList.length-2)" :key="url._id">
-          <q-item class="row bg-grey-8">
+          <q-item class="row bg-grey-8 text-white">
             <q-item-section class="xs-hide sm-hide">
               <div style="width: 80%;  text-overflow: ellipsis;" class="col-lg-8 overflow-hidden ellipsis xs-hide sm-hide" :class="$q.screen.lt.md ? 'hidden' : ''">
                 {{ url.longUrl }}
