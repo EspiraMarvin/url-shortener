@@ -9,7 +9,7 @@ const router = Router()
 router.get('/:code', async (req, res) => {
   try {
     const url = await Url.findOne({ urlCode: req.params.code })
-    console.log('urlCOde', req.params.code)
+    // console.log('urlCOde', req.params.code)
 
     if (url) {
       return res.redirect(url.longUrl)
@@ -19,7 +19,7 @@ router.get('/:code', async (req, res) => {
     }
   }
   catch (err) {
-    console.log('error', err)
+    // console.log('error', err)
     res.status(500).json('Server error')
   }
 

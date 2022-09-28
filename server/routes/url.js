@@ -42,8 +42,8 @@ router.post('/shorten', async (req, res) => {
     }
   }else {
     // long url is not valid
-    res.status(401).json('Can Not Shorten An Invalid URL')
-
+    res.status(401).json('Failed to Shorten, looks like an Invalid URL')
+    // res.status(401).json('Can Not Shorten An Invalid URL')
   }
 })
 
@@ -60,6 +60,41 @@ router.get('/', async (req, res) => {
     res.status(200).json(sorted)
   } catch (error) {
     res.status(404).json({success: true, message: error.message})
+  }
+})
+
+
+// delete all
+router.delete('/all:ids', async (req, res) => {
+  console.log('REQ URLS AT URI DELTE API', req)
+
+  const urls = req.params.ids
+  console.log('URLS AT URI DELTE API', urls)
+  try {
+    urls.forEach(async (url) => {
+  console.log('URL AT URI DELTE API', url);
+
+    const removed = await Url.findByIdAndDelete(url._id)
+    if (!removed) throw Error('Something went wrong. Client could not be found')
+    });
+    // const removed = await Url.deleteMany({ _id: urls.indexOf()})
+    // if (!removed) throw Error('Something went wrong. Client could not be found')
+    res.status(200).json(removed)
+  } catch (error) {
+    console.log('delete many error', error)
+    res.status(404).json({ errorMessage: error.message })
+  }
+})
+
+// delete one
+router.delete('/:id', async (req, res) => {
+  const { id } = req.params
+  try {
+    const removed = await Url.findByIdAndDelete(id)
+    if (!removed) throw Error('Something went wrong. Client could not be found')
+    res.status(200).json(removed)
+  } catch (error) {
+    res.status(404).json({ errorMessage: error.message })
   }
 })
 

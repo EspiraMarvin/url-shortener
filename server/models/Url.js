@@ -15,9 +15,10 @@ const UrlSchema = new Schema(
       type: String,
       default: Date.now()
     }
+  },
+  {
+    timestamps: true
   }
 )
 
-// const Url = model('Url', UrlSchema)
-// module.exports = Url
 module.exports = model('Url', UrlSchema)
