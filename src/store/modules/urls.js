@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = 'http://localhost:5000'
+const baseURL = process.env.NODE_ENV !== 'production' ? 'http://localhost:5000' : 'https://shorts.onrender.com'
 
 const state = () => ({
   urls: [],
@@ -50,6 +50,17 @@ const actions = {
           context.commit('SET_FETCHING_URLS', false)
           reject(error)
         })
+    })
+  },
+  DELETE_URL(context, payload){
+    const urlId = payload._id
+    return new Promise((resolve, reject) => {
+      axios.delete(`${baseURL}/api/url/${urlId}`)
+        .then(response => {
+          context.dispatch('FETCH_URLS')
+          resolve(response)
+        })
+        .catch(error => reject(error))
     })
   }
 }
