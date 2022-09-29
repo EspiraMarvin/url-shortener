@@ -7,7 +7,7 @@
         stack-label
         label="Add URL"
         lazy-rules
-        :rules="[ val => val !== null && val !== '' || 'Enter URL']"
+        :rules="[val => val.replace(/\s/g, '').length !== 0 || 'Enter URL']"
       />
       <q-btn
         @click="submitUrl"
