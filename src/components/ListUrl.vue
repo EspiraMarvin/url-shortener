@@ -16,10 +16,7 @@
       <template v-if="!fetchingUrls && urlsList.slice(0, urlsList.length-2).length === 0 && urlsList.length !== 0">
         <div class="flex flex-center q-mt-xl text-grey-6 text-h6" style="font-weight: lighter;">No Urls Shortened</div>
       </template>
-      <!-- https://cloud.mongodb.com/v2/62f8d90e9ba3753f779a3fb3#metrics/replicaSet/62f8dacb45bde50c6dd708bf/explorer/test/workouts/find -->
-      <!-- <template v-if="fetchingUrls && urlsList.slice(0, urlsList.length-2).length === 0 && urlsList.length == 2"> -->
-        <!-- <div class="flex flex-center q-mt-xl text-grey-6 text-h6" style="font-weight: lighter;">damn</div> -->
-      <!-- </template> -->
+
 
       <template v-if="urlsList.length > 0">
 
