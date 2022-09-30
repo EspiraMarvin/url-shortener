@@ -2,9 +2,13 @@
   <div class="q-pt-md">
     <div class="text-center q-pt-md " style="text-decoration: underline;font-weight: bold; font-size:20px">Shortened URL List </div>
     <div class="q-pt-xl flex justify-center">
-      <template v-if="fetchingUrls && urlsList.length === 0" class="q-mt-xl">
-        <q-spinner-facebook color="primary" class="q-mt-xl" size="xl"/>
-      </template>
+<!--
+      <template
+        v-if="fetchingUrls && urlsList.slice(0, urlsList.length-2).length === 1"
+        class="q-mt-xl" style="opacity: 0.1"
+        >
+        <q-spinner-facebook  color="primary" class="q-mt-xl" size="xl"/>
+      </template> -->
 
 
       <template v-if="fetchingUrls && urlsList.slice(0, urlsList.length-2).length === 0 && urlsList.length !== 0">
@@ -22,12 +26,15 @@
 
         <q-list bordered separator class="q-mb-xs full-width " style="max-width: 1200px" v-for="url in urlsList.slice(0, urlsList.length-2)" :key="url._id">
           <q-item class="row">
-            <div class="md-hide lg-hide xl-hide flex flex-center cursor-pointer" @click="deleteUrl(url)">
+            <div class="md-hide lg-hide xl-hide flex flex-center cursor-pointer" @click="deleteUrl(url)" :style="clickDeleteBtn ? 'opacity: 0, cursor: none' : 'opacity-1'">
               X
             </div>
             <q-item-section class="xs-hide sm-hide">
               <div style="width: 80%;  text-overflow: ellipsis;" class="col-lg-8 overflow-hidden ellipsis xs-hide sm-hide" :class="$q.screen.lt.md ? 'hidden' : ''">
-                <span @click="deleteUrl(url)" class="q-px-md cursor-pointer">X</span>{{ url.longUrl }}
+                <span @click="deleteUrl(url)" class="q-px-md cursor-pointer"
+                :style="clickDeleteBtn ? 'opacity: 0, cursor: none' : 'opacity: 1'">
+                  X
+                </span>{{ url.longUrl }}
               </div>
               <q-tooltip>
                 {{ moment(url.date).format('DD/mm hh:mm A') }}
@@ -88,7 +95,7 @@ import moment from 'moment'
 export default {
   name: "ListUrl",
   data() {
-    return {...utils, moment:moment}
+    return {...utils, moment:moment, clickDeleteBtn: false}
   },
   mounted() {
     this.$store.dispatch('urls/FETCH_URLS')
@@ -108,12 +115,16 @@ export default {
     },
     async deleteUrl(url) {
       try {
+        this.clickDeleteBtn =  true
         const response = await this.$store.dispatch('urls/DELETE_URL', url)
-        if (response) return
+        if (response)
+      this.clickDeleteBtn =  false
+        return
         //  this.$q.notify({ message: 'Link Deleted', position: 'center', color: 'red-5'})
       }
       catch(err) {
         this.$q.notify({ message: err.message, position: 'center', color: 'red-5'})
+        this.clickDeleteBtn =  false
       }
     },
     async clearAllUrls() {
